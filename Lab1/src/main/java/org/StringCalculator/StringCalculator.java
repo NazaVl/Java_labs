@@ -35,8 +35,9 @@ public class StringCalculator {
                     }
                     if (Integer.parseInt(getValueString) <= 0) {
                         negativeNumbers.add(Integer.parseInt(getValueString));
+                    } else if (Integer.parseInt(getValueString) < 1001) {
+                        result += Integer.parseInt(getValueString);
                     }
-                    result += Integer.parseInt(getValueString);
                 }
             }
             if (!negativeNumbers.isEmpty())

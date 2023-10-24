@@ -42,8 +42,8 @@ class StringCalculatorTest {
     @Test
     void TryCustomDelimiter() {
         StringCalculator calculator = new StringCalculator();
-        int result = calculator.add("//;\n1000;2;3");
-        assertEquals(1005, result);
+        int result = calculator.add("//;\n1001;2;3");
+        assertEquals(5, result);
     }
 
     @Test
@@ -57,5 +57,12 @@ class StringCalculatorTest {
     void CatchNegativeNumbers() {
         StringCalculator calculator = new StringCalculator();
         assertThrows(NumberFormatException.class, () -> calculator.add("-1,2"));
+    }
+
+    @Test
+    void IgnoreNumbersOverThousand() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("1000,999,1001");
+        assertEquals(1999, result);
     }
 }
