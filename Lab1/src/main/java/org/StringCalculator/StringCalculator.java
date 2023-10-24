@@ -11,6 +11,13 @@ public class StringCalculator {
         else
         {
             int result = 0;
+            if (stringAdd.contains("//")){
+                    String delimiter = stringAdd.substring(2, stringAdd.indexOf("\n"));
+                    if (delimiter.length() > 1){
+                        throw new IllegalArgumentException("Incorrect input: " + delimiter);
+                    }
+                    stringAdd = stringAdd.substring(stringAdd.indexOf("\n") + 1).replace(delimiter, ",");
+            }
             stringAdd = stringAdd.replace("\n", ",");
             if (stringAdd.contains(",,")){
                 throw new IllegalArgumentException("Incorrect input: get to delimiters in row.");
@@ -28,7 +35,6 @@ public class StringCalculator {
                 }
             }
             return result;
-
         }
     }
 }

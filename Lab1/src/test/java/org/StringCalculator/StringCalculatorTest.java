@@ -38,4 +38,18 @@ class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertThrows(IllegalArgumentException.class, () -> calculator.add("1,\n2,3"));
     }
+
+    @Test
+    void TryCustomDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//;\n1;2;3");
+        assertEquals(6, result);
+    }
+
+    @Test
+    void CatchCustomInvalidDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//;\n1;2;3");
+        assertThrows(IllegalArgumentException.class, () -> calculator.add("//if\n1if2,3"));
+    }
 }
