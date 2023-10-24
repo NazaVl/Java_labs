@@ -11,6 +11,10 @@ public class StringCalculator {
         else
         {
             int result = 0;
+            stringAdd = stringAdd.replace("\n", ",");
+            if (stringAdd.contains(",,")){
+                throw new IllegalArgumentException("Incorrect input: get to delimiters in row.");
+            }
             String[] getValuesString = stringAdd.split(",");
             for (String getValueString : getValuesString ) {
                 if (!getValueString.isEmpty()) {

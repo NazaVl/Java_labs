@@ -32,4 +32,10 @@ class StringCalculatorTest {
         int result = calculator.add("1,2,3");
         assertEquals(6, result);
     }
+
+    @Test
+    void CatchTwoDelimiterInRow() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.add("1,\n2,3"));
+    }
 }
