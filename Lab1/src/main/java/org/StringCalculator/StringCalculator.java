@@ -12,9 +12,6 @@ public class StringCalculator {
         {
             int result = 0;
             String[] getValuesString = stringAdd.split(",");
-            if (getValuesString.length >= 3){
-                throw new IllegalArgumentException("Incorrect Input");
-            }
             for (String getValueString : getValuesString ) {
                 if (!getValueString.isEmpty()) {
                     try {
