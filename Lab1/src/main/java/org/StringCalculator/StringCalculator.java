@@ -16,11 +16,16 @@ public class StringCalculator {
                 if (stringAdd.contains("[") && stringAdd.contains("]") && (stringAdd.indexOf("]") > stringAdd.indexOf("["))){
                     String delimiter = stringAdd.substring(2, stringAdd.indexOf("\n"));
                     if (((int) delimiter.chars().filter(c -> c == '[').count()) != ((int) delimiter.chars().filter(c -> c == ']').count())){
-                        throw new IllegalArgumentException("Incorrect delimiter input");
-                    } else if (!delimiter.startsWith("[") && !delimiter.endsWith("]")) {
+                        throw new IllegalArgumentException("Incorrect input");
+                    }
+                    else if (!delimiter.startsWith("[") && !delimiter.endsWith("]")) {
                         throw new IllegalArgumentException("Incorrect delimiter input");
                     }
-                    stringAdd = stringAdd.substring(stringAdd.indexOf("\n") + 1).replace(delimiter.substring(1, delimiter.length()-1), ",");;
+                    String[] getDelimitersFromString = delimiter.split("]");
+                    stringAdd = stringAdd.substring(stringAdd.indexOf("\n") + 1);
+                    for (String getDelimiterFromString : getDelimitersFromString) {
+                        stringAdd = stringAdd.replace(getDelimiterFromString.substring(1), ",");
+                    }
                 }
                 else {
                     String delimiter = stringAdd.substring(2, stringAdd.indexOf("\n"));

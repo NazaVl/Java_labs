@@ -84,4 +84,11 @@ class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertThrows(IllegalArgumentException.class, () -> calculator.add("//[]f\n10f2f3"));
     }
+
+    @Test
+    void TryMoreThanOneDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[*][%]\n10*2%3");
+        assertEquals(15, result);
+    }
 }
