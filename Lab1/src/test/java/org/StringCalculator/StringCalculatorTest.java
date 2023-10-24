@@ -91,4 +91,11 @@ class StringCalculatorTest {
         int result = calculator.add("//[*][%]\n10*2%3");
         assertEquals(15, result);
     }
+
+    @Test
+    void TryMoreThanOneLongDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[**][***][*]\n1***2*3**4***5");
+        assertEquals(15, result);
+    }
 }

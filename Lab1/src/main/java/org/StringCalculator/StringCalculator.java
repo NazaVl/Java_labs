@@ -2,6 +2,7 @@ package org.StringCalculator;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class StringCalculator {
     public int add(String stringAdd) {
@@ -23,6 +24,17 @@ public class StringCalculator {
                     }
                     String[] getDelimitersFromString = delimiter.split("]");
                     stringAdd = stringAdd.substring(stringAdd.indexOf("\n") + 1);
+                    Arrays.sort(getDelimitersFromString, new Comparator<String>() {
+                        @Override
+                        public int compare(String s1, String s2) {
+                            return Integer.compare(s1.length(), s2.length());
+                        }
+                    });
+                    for (int i = 0; i < getDelimitersFromString.length / 2; i++) {
+                        String temp = getDelimitersFromString[i];
+                        getDelimitersFromString[i] = getDelimitersFromString[getDelimitersFromString.length - 1 - i];
+                        getDelimitersFromString[getDelimitersFromString.length - 1 - i] = temp;
+                    }
                     for (String getDelimiterFromString : getDelimitersFromString) {
                         stringAdd = stringAdd.replace(getDelimiterFromString.substring(1), ",");
                     }
