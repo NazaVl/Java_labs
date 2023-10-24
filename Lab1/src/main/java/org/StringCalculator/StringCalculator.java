@@ -1,6 +1,7 @@
 package org.StringCalculator;
 
-
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class StringCalculator {
     public int add(String stringAdd) {
@@ -23,6 +24,7 @@ public class StringCalculator {
                 throw new IllegalArgumentException("Incorrect input: get to delimiters in row.");
             }
             String[] getValuesString = stringAdd.split(",");
+            ArrayList<Integer> negativeNumbers = new ArrayList<>(0);
             for (String getValueString : getValuesString ) {
                 if (!getValueString.isEmpty()) {
                     try {
@@ -31,9 +33,14 @@ public class StringCalculator {
                     catch (Exception e){
                         throw new IllegalArgumentException("Incorrect input: " + getValueString);
                     }
+                    if (Integer.parseInt(getValueString) <= 0) {
+                        negativeNumbers.add(Integer.parseInt(getValueString));
+                    }
                     result += Integer.parseInt(getValueString);
                 }
             }
+            if (!negativeNumbers.isEmpty())
+                throw new NumberFormatException("Exception! Used negative numbers: " + Arrays.toString(new ArrayList[]{negativeNumbers}));
             return result;
         }
     }

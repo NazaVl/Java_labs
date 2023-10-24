@@ -42,8 +42,8 @@ class StringCalculatorTest {
     @Test
     void TryCustomDelimiter() {
         StringCalculator calculator = new StringCalculator();
-        int result = calculator.add("//;\n1;2;3");
-        assertEquals(6, result);
+        int result = calculator.add("//;\n1000;2;3");
+        assertEquals(1005, result);
     }
 
     @Test
@@ -51,5 +51,11 @@ class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         int result = calculator.add("//;\n1;2;3");
         assertThrows(IllegalArgumentException.class, () -> calculator.add("//if\n1if2,3"));
+    }
+
+    @Test
+    void CatchNegativeNumbers() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(NumberFormatException.class, () -> calculator.add("-1,2"));
     }
 }
