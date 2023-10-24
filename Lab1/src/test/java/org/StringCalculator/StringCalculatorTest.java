@@ -65,4 +65,23 @@ class StringCalculatorTest {
         int result = calculator.add("1000,999,1001");
         assertEquals(1999, result);
     }
+
+    @Test
+    void TryLongCustomDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[***]\n10***2***3");
+        assertEquals(15, result);
+    }
+
+    @Test
+    void CatchInvalidLongDelimiter() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.add("//[]]\n10]2]3"));
+    }
+
+    @Test
+    void CatchInvalidLongDelimiterSecondTime() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(IllegalArgumentException.class, () -> calculator.add("//[]f\n10f2f3"));
+    }
 }
